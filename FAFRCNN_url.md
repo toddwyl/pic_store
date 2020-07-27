@@ -1,4 +1,4 @@
-![1568548447414](https://cdn.jsdelivr.net/gh/ManWingloeng/pic_store@master//FAFRCNN.assets/1568548447414.png)
+![1568548447414](https://cdn.jsdelivr.net/gh/ManWingloeng/pic_store@master/FAFRCNN.assets/1568548447414.png)
 
 
 
@@ -28,7 +28,7 @@
 
 ## 算法设计
 
-![1568550456835](https://cdn.jsdelivr.net/gh/ManWingloeng/pic_store@master//FAFRCNN.assets/1568550456835.png)
+![1568550456835](https://cdn.jsdelivr.net/gh/ManWingloeng/pic_store@master/FAFRCNN.assets/1568550456835.png)
 
 <center>Fig 1. Few-shot Adaptive Faster R-CNN (FAFRCNN)的整体网络结构（其中的SMFR模块后面会介绍到）</center>
 在目标检测的任务中，论文作者把域适应问题分成**两个层次**：
@@ -38,7 +38,7 @@
 
 具体可以看下面Fig2的第一行和第三行，图像级别下的域迁移是整体图像各个像素组成的域迁移，实例级别的域迁移是汽车样本下的域迁移。
 
-<img src="https://cdn.jsdelivr.net/gh/ManWingloeng/pic_store@master//FAFRCNN.assets/1568551078207.png" alt="1568551078207" style="zoom:70%;" />
+<img src="https://cdn.jsdelivr.net/gh/ManWingloeng/pic_store@master/FAFRCNN.assets/1568551078207.png" alt="1568551078207" style="zoom:70%;" />
 
 
 
@@ -47,7 +47,7 @@
 
 ​	图像级别的域适应（Image-level Adaptation） 是为了完成image-to-image的转换，论文提出了**split pooling（SP）**的方法，作用是为了随机放置grid，做法也是十分简单，grid cell的宽为w，高为h，然后随机生成sx和xy，grid根据sx和sy调整位置。
 
-<img src="https://cdn.jsdelivr.net/gh/ManWingloeng/pic_store@master//FAFRCNN.assets/1568730320548.png" alt="1568730320548" style="zoom:50%;" />
+<img src="https://cdn.jsdelivr.net/gh/ManWingloeng/pic_store@master/FAFRCNN.assets/1568730320548.png" alt="1568730320548" style="zoom:50%;" />
 
 <center> Fig 3. grid的选择 </center>
 ​	得到grid之后，论文把grid与Faster R-CNN中选取anchor boxes一样，采取了三种scale和三种ratio，split pooling对应在提取的特征$f(x)$中也是有大（l）、中（m）、小（s）三种scale： $sp_l(f(x)),sp_m(f(x)),sp_s(f(x))$。
@@ -107,20 +107,20 @@ $$
 
 以下都是采用AP作为对比评价指标。
 
-<img src="https://cdn.jsdelivr.net/gh/ManWingloeng/pic_store@master//FAFRCNN.assets/1568719229415.png" alt="1568719229415" style="zoom:70%;" /><img src="https://cdn.jsdelivr.net/gh/ManWingloeng/pic_store@master//FAFRCNN.assets/1568719250855.png" alt="1568719229415" style="zoom:70%;" />
+<img src="https://cdn.jsdelivr.net/gh/ManWingloeng/pic_store@master/FAFRCNN.assets/1568719229415.png" alt="1568719229415" style="zoom:70%;" /><img src="https://cdn.jsdelivr.net/gh/ManWingloeng/pic_store@master//FAFRCNN.assets/1568719250855.png" alt="1568719229415" style="zoom:70%;" />
 
 <center> Fig 4.  左边是SP技术在Scenario-1和Scenario-2的效果。右边是SP技术在Scenario-3和Scenario-4的效果。sp表示的是split pooling，ins表示加入实例级别的域适应，ft表示加入fine-tunning loss。  </center>
 可以看出，在加入SP技术之后AP得到明显的提高，比**ADDA [1]**高了5个点。
 
-<img src="https://cdn.jsdelivr.net/gh/ManWingloeng/pic_store@master//FAFRCNN.assets/1568719467073.png" alt="1568719467073" style="zoom:65%;" />
+<img src="https://cdn.jsdelivr.net/gh/ManWingloeng/pic_store@master/FAFRCNN.assets/1568719467073.png" alt="1568719467073" style="zoom:65%;" />
 
 <center> Fig 5. 论文提出的方法在Scenario-5中的各个实例的AP指标对比</center>
 从UDA_setting中看到其实并不是全部都能取到最优成绩。
 
-<img src="https://cdn.jsdelivr.net/gh/ManWingloeng/pic_store@master//FAFRCNN.assets/1568778070510.png" alt="成对训练的效果" style="zoom:70%;"/>
+<img src="https://cdn.jsdelivr.net/gh/ManWingloeng/pic_store@master/FAFRCNN.assets/1568778070510.png" alt="成对训练的效果" style="zoom:70%;"/>
 
 <center> Fig 6. 引入pairing理论的效果</center>
-<img src="https://cdn.jsdelivr.net/gh/ManWingloeng/pic_store@master//FAFRCNN.assets/1568779997906.png" alt="the effect SMFR" style="zoom:70%;"/>
+<img src="https://cdn.jsdelivr.net/gh/ManWingloeng/pic_store@master/FAFRCNN.assets/1568779997906.png" alt="the effect SMFR" style="zoom:70%;"/>
 
 <center> Fig 7. SMFR的效果 </center>
 ## 总结思考
